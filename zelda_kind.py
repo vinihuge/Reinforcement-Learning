@@ -122,7 +122,8 @@ for episode in range(HM_EPISODES):
         if reward == FOOD_REWARD:
             new_q = FOOD_REWARD
         else:
-            new_q = (1 - LEARNING_RATE) * current_q + LEARNING_RATE * (reward + DISCOUNT * max_future_q)
+            new_q = current_q + LEARNING_RATE * (reward + DISCOUNT * (max_future_q - current_q))
+            #new_q = (1 - LEARNING_RATE) * current_q + LEARNING_RATE * (reward + DISCOUNT * max_future_q)
         q_table[obs][action] = new_q
 
         if show:
